@@ -32,7 +32,6 @@ jobs:
         run: |
           VER=$(cat VERSION)
           echo "VERSION=$VER" >> "$GITHUB_ENV"
-          echo "VERSION=$VER" >> "$GITHUB_OUTPUT"
 
       - name: Docker meta
         id: meta
@@ -47,7 +46,7 @@ jobs:
             type=schedule
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern=${{ env.VERSION }}
+            type=semver,pattern={{version}}
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
