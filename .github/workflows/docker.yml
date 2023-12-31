@@ -29,7 +29,7 @@ jobs:
 
       - name: Set up dynamic build ARGs
         id: getargs
-        run: echo "version=$(cat ./VERSION)" >> "$GITHUB_ENV"
+        run: echo "VERSION=$(cat ./VERSION)" >> "$GITHUB_ENV"
 
       - name: Docker meta
         id: meta
@@ -44,9 +44,7 @@ jobs:
             type=schedule
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern=${{ env.VERSION }}
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
