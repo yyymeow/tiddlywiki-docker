@@ -27,20 +27,20 @@ listen_params="$listen_params debug-level=${DEBUG_LEVEL-none}"
 if [ -n "$PATH_PREFIX" ]; then
   listen_params="$listen_params path-prefix=$PATH_PREFIX"
 fi
-if [ -n "$USERNAME" ]
+if [ -n "$USERNAME" ] && [ -n "$PASSWORD" ]
 then
   listen_params="$listen_params username=$USERNAME"
-fi
-if [ -n "$PASSWORD" ]
-then
   listen_params="$listen_params password=${PASSWORD-wiki}"
+elif [ -n "$USERNAME" ]
+then
+  listen_params="$listen_params anon-username=$USERNAME"
 fi
 
 # Configure lazy loading see https://tiddlywiki.com/static/LazyLoading.html
-if [ "$LAZYLOADING" -eq "IMAGES" ]
+if [ "$LAZYLOADING" = "IMAGES" ]
 then
     listen_params="$listen_params root-tiddler=\$:/core/save/lazy-images"
-elif [ "$LAZYLOADING" -eq "ALL" ]
+elif [ "$LAZYLOADING" = "ALL" ]
 then
     listen_params="$listen_params root-tiddler=\$:/core/save/lazy-all"    
 fi
