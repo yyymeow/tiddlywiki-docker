@@ -31,7 +31,7 @@ if [ -n "$USERNAME" ]
 then
   listen_params="$listen_params username=$USERNAME"
 fi
-if [-n "$PASSWORD"]
+if [ -n "$PASSWORD" ]
 then
   listen_params="$listen_params password=${PASSWORD-wiki}"
 fi
