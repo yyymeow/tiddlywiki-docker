@@ -22,14 +22,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
 
       - name: Set up dynamic build ARGs
         id: getargs
-        run: echo "::set-output name=version::$(cat ./stable/VERSION)"
+        run: echo "version::$(cat ./stable/VERSION)" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: meta
