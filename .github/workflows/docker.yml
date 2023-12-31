@@ -2,8 +2,8 @@
 name: docker
 
 on:
-  schedule:
-    - cron: 0 3 5 * *    # every friday at 3am
+#  schedule:
+#    - cron: 0 3 5 * *    # every friday at 3am
   push:
     branches:
       - '**'
@@ -37,7 +37,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            m0wer/tiddlywiki
+            zfgdj/tiddlywiki
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=latest
