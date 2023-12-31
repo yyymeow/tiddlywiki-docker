@@ -30,9 +30,9 @@ jobs:
       - name: Set up dynamic build ARGs
         id: getargs
         run: |
-	  VER=$(cat VERSION)
-	  echo "VERSION=$VER" >> "$GITHUB_ENV"
-	  echo "VERSION=$VER" >> "$GITHUB_OUTPUT"
+          VER=$(cat VERSION)
+          echo "VERSION=$VER" >> "$GITHUB_ENV"
+          echo "VERSION=$VER" >> "$GITHUB_OUTPUT"
 
       - name: Docker meta
         id: meta
