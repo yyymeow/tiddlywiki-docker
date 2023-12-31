@@ -9,6 +9,9 @@ WORKDIR /var/lib/tiddlywiki
 # Add init-and-run script
 ADD init-and-run-wiki /usr/local/bin/init-and-run-wiki
 
+# Envs
+ENV LAZYLOADING "OFF"
+
 # Meta
 ENTRYPOINT ["/bin/sh"]
 CMD ["/usr/local/bin/init-and-run-wiki"]

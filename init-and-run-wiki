@@ -27,11 +27,21 @@ listen_params="$listen_params debug-level=${DEBUG_LEVEL-none}"
 if [ -n "$PATH_PREFIX" ]; then
   listen_params="$listen_params path-prefix=$PATH_PREFIX"
 fi
-if [ -n "$USERNAME" ]; then
+if [ -n "$USERNAME" ]
+then
   listen_params="$listen_params username=$USERNAME"
   listen_params="$listen_params password=${PASSWORD-wiki}"
 fi
 
+# Configure lazy loading see https://tiddlywiki.com/static/LazyLoading.html
+if [ "$LAZYLOADING" -eq "IMAGES" ]
+then
+    listen_params="$listen_params root-tiddler=\$:/core/save/lazy-images"
+elif [ "$LAZYLOADING" -eq "ALL" ]
+then
+    listen_params="$listen_params root-tiddler=\$:/core/save/lazy-all"    
+fi
+    
 # Start the tiddlywiki server
 
 exec /usr/bin/env node $NODEJS_V8_ARGS $tiddlywiki_script $plugins_params mywiki --listen $listen_params $EXTRAOPTIONS
